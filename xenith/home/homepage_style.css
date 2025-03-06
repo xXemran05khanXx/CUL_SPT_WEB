@@ -1,0 +1,261 @@
+/* ===================== GLOBAL STYLES ===================== */
+@font-face {
+    font-family: 'monserrat';
+    src: url(/xenith/Font/Montserrat/Montserrat-Italic-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: 'gilroy';
+    src: url(/xenith/Font/Gilroy/Gilroy/Gilroy-ExtraBold.otf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'monserrat';
+    color: white;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+/* ===================== NAVIGATION BAR ===================== */
+#nav {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 150px;
+    gap: 50px;
+    justify-content: flex-start;
+    position: fixed;
+    z-index: 9999; 
+}
+
+#nav img {
+    height: 50px;
+    margin: 25px;
+}
+
+#nav h4 {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* ===================== CUSTOM CURSOR ===================== */
+#cursor {
+    height: 20px;
+    width: 20px;
+    background-color: #ceff86;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 99; 
+    transform: translate(-50%, -50%);
+    pointer-events: none; 
+}
+
+#cursor_blur {
+    height: 200px;
+    width: 200px;
+    background-color: rgb(172, 209, 98);
+    border-radius: 50%;
+    position: fixed;
+    filter: blur(100px);
+    z-index: 9;
+}
+
+/* ===================== BACKGROUND VIDEO ===================== */
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: fixed;
+    z-index: -1; 
+}
+
+/* ===================== MAIN CONTAINER ===================== */
+#main {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ===================== PAGE 1 (HERO SECTION) ===================== */
+#page1 {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    z-index: 10;
+}
+
+#page1 h1 {
+    font-size: 60px;
+    font-weight: 900;
+    position: relative;
+}
+
+#page1 h1::before {
+    content: "EXPERIENCE. INNOVATE. CELEBRATE.";
+    position: absolute;
+    color: black;
+    top: -6px;
+    left: -6px;
+    -webkit-text-stroke: 2px #22921c;
+    z-index: -1;
+}
+
+#page1 h2 {
+    color: #ADFF2F;
+    font-size: 30px;
+    font-weight: 900;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#page1 p {
+    font-size: 15px;
+    font-weight: 800;
+    width: 30%;
+}
+
+/* ===================== PAGE 2 ===================== */
+#page2 {
+    height: 100vh;
+    width: 100%;
+    z-index: 10;
+}
+
+/* ===================== SCROLLER ===================== */
+
+@keyframes scroller {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+#scroller {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    z-index: 10;
+    position: relative;
+}
+
+#scroller::-webkit-scrollbar {
+    display: none;
+}
+
+#scroller-in{
+    display: inline-block;
+    white-space: nowrap;
+    animation-name: scroller;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+}
+
+#scroller h4 {
+    font-size: 140px;
+    font-weight: 900;
+    display: inline-block;
+    margin-right: 10px;
+    font-family: "gilroy";
+    color: rgba(0, 0, 0, 0);
+    -webkit-text-stroke: 2px greenyellow;
+    transition: color 0.5s ease; 
+    margin-bottom: 100px;
+}
+
+#scroller-in h4:hover {
+    color: greenyellow;
+}
+
+/* ===================== ABOUT US ===================== */
+
+#about-us {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    height: 40vh;
+    padding: 0 50px;
+    align-items: center;
+}
+
+#about-us img {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+}
+/* ===================== Image Slider ===================== */
+.slider {
+    width: 100%;
+    height: var(--height);
+    overflow: hidden;
+    position: relative;
+    /* Optional mask for a fading effect at the edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.slider .list {
+    display: flex;
+    /* The total width is twice the number of images for seamless looping */
+    width: calc(2 * var(--quantity) * var(--width));
+    animation: slide 20s linear infinite;  /* Increased duration from 10s to 20s */
+}
+
+.slider .list .item {
+    flex-shrink: 0;
+    width: var(--width);
+    height: var(--height);
+}
+
+.slider .list .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Animate the list by sliding it left */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-1 * var(--quantity) * var(--width)));
+    }
+}
+
+/* Reverse animation for slider with reverse attribute */
+.slider[reverse="true"] .list {
+    animation-direction: reverse;
+}
+
+/* ===================== About Us Event Text ===================== */
+#about-us-in {
+    text-align: center;
+    padding: 20px;
+    background: #000;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+#about-us-in h3 {
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: #ADFF2F;
+}
